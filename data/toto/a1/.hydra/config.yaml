@@ -1,0 +1,3 @@
+_target_: scratch.toto
+out_path: ${outs:${hydra:runtime.output_dir}/out.txt}
+a: 1

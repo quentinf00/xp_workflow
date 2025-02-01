@@ -1,0 +1,15 @@
+stages:
+  toto/a1:
+    cmd: python xp_workflow/run.py -cd configs/toto -cn a1 hydra.run.dir=data/toto/a1
+    outs:
+    - data/toto/a1/out.txt
+    deps: []
+    params:
+    - configs/toto/a1.yaml: null
+  toto/a2:
+    cmd: python xp_workflow/run.py -cd configs/toto -cn a2 hydra.run.dir=data/toto/a2
+    outs:
+    - data/toto/a2/out.txt
+    deps: []
+    params:
+    - configs/toto/a2.yaml: null

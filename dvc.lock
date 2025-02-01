@@ -1,0 +1,26 @@
+schema: '2.0'
+stages:
+  toto/a1:
+    cmd: python xp_workflow/run.py -cd configs/toto -cn a1 hydra.run.dir=data/toto/a1
+    params:
+      configs/toto/a1.yaml:
+        _target_: scratch.toto
+        a: 1
+        out_path: ${outs:${hydra:runtime.output_dir}/out.txt}
+    outs:
+    - path: data/toto/a1/out.txt
+      hash: md5
+      md5: 3872c9ae3f427af0be0ead09d07ae2cf
+      size: 3
+  toto/a2:
+    cmd: python xp_workflow/run.py -cd configs/toto -cn a2 hydra.run.dir=data/toto/a2
+    params:
+      configs/toto/a2.yaml:
+        _target_: scratch.toto
+        a: 2
+        out_path: ${outs:${hydra:runtime.output_dir}/out.txt}
+    outs:
+    - path: data/toto/a2/out.txt
+      hash: md5
+      md5: 83a88ab12cf3296e031df84985733d33
+      size: 3

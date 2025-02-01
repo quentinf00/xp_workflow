@@ -1,0 +1,14 @@
+configs:
+  toto:
+    a1:
+      _target_: scratch.toto
+      out_path: out.txt
+      a: 1
+    a2:
+      _target_: scratch.toto
+      out_path: out.txt
+      a: 2
+config_names:
+  toto:
+  - a1
+  - a2
