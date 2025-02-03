@@ -12,26 +12,9 @@
 ### Hydra(-Zen)
     Manage xp configurations
 
-## Prerequisite
-### Pixi
-https://pixi.sh/latest/#installation
-
-### Cookiecutter
-
-```pixi global install cookiecutter```
-
 ## Usage
-###Import template with cookiecutter
-`cookiecutter https://github.com/quentinf00/xp_workflow.git project_name=my_project`
-
-Init project
-```
-cd project
-git init
-dvc init
-dvc config  core.analytics false
-```
-
+Import template with cookiecutter
+cookiecutter https://github.com/quentinf00/xp_workflow.git project_name=my_project
 
 Write processing functions in `my_project `
 
