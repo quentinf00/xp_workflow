@@ -2,7 +2,6 @@ import hydra_zen
 from pathlib import Path
 
 from omegaconf import OmegaConf
-import scratch
 from xp_workflow.configure import configure, deps, outs
 from test_project.stages import toto, tata
 

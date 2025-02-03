@@ -44,7 +44,7 @@ def configure(store, stage_groups, stage_dir=stage_dir, configs_dir=configs_dir)
             OmegaConf.resolve(cfg)
 
             dvc_stages[f'{stage}/{name}'] = dict(
-                cmd=( f'python xp_workflow/run.py '
+                cmd=( f'python -m xp_workflow.run '
                     f'-cd {configs_dir(stage)} -cn {name} '
                     f'hydra.run.dir={stage_dir(stage, name)}'),
                 outs=outs,
