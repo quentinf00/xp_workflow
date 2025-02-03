@@ -5,4 +5,5 @@
 outputs
 multirun
 mlruns
+.pipeline_id
 **/__pycache__
