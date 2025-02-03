@@ -4,4 +4,5 @@
 *.egg-info
 outputs
 multirun
+mlruns
 **/__pycache__

@@ -6,8 +6,20 @@ name = "xp_workflow"
 platforms = ["linux-64"]
 version = "0.1.0"
 
+[activation]
+env = { MLFLOW_PROJECT_NAME = "xp_workflow" }
+
 [tasks]
-configure = "python configure.py"
+rm-artifacts = "rm -rf artifacts"
+configure = {cmd="python configure.py", depends-on=['rm-artifacts']}
+
+[tasks.start_pipeline]
+cmd = "python xp_workflow/mlflow_utils.py run_name=$NAME project_name=$MLFLOW_PROJECT_NAME dvc_root=$(dvc root)"
+env = {NAME = "default1"}
+
+[tasks.pipeline]
+cmd = "dvc repro"
+depends-on = ["configure", "start_pipeline"]
 
 [dependencies]
 mlflow = ">=2.20.1,<3"

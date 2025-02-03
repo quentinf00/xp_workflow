@@ -1,26 +1,206 @@
 schema: '2.0'
 stages:
   toto/a1:
-    cmd: python xp_workflow/run.py -cd configs/toto -cn a1 hydra.run.dir=data/toto/a1
+    cmd: python xp_workflow/run.py -cd artifacts/toto -cn a1 hydra.run.dir=artifacts/toto/a1
     params:
-      configs/toto/a1.yaml:
-        _target_: scratch.toto
-        a: 1
-        out_path: ${outs:${hydra:runtime.output_dir}/out.txt}
+      artifacts/toto/a1.yaml:
+        toto:
+          _target_: test_project.stages.toto
+          out_path: ${outs:${hydra:runtime.output_dir}/toto.txt}
+          a: 1
     outs:
-    - path: data/toto/a1/out.txt
+    - path: artifacts/toto/a1/toto.txt
       hash: md5
       md5: 3872c9ae3f427af0be0ead09d07ae2cf
       size: 3
   toto/a2:
-    cmd: python xp_workflow/run.py -cd configs/toto -cn a2 hydra.run.dir=data/toto/a2
+    cmd: python xp_workflow/run.py -cd artifacts/toto -cn a2 hydra.run.dir=artifacts/toto/a2
     params:
-      configs/toto/a2.yaml:
-        _target_: scratch.toto
-        a: 2
-        out_path: ${outs:${hydra:runtime.output_dir}/out.txt}
+      artifacts/toto/a2.yaml:
+        toto:
+          _target_: test_project.stages.toto
+          out_path: ${outs:${hydra:runtime.output_dir}/toto.txt}
+          a: 2
     outs:
-    - path: data/toto/a2/out.txt
+    - path: artifacts/toto/a2/toto.txt
       hash: md5
       md5: 83a88ab12cf3296e031df84985733d33
       size: 3
+  tata/a1_b1:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a1_b1 hydra.run.dir=artifacts/tata/a1_b1
+    deps:
+    - path: artifacts/toto/a1/toto.txt
+      hash: md5
+      md5: 3872c9ae3f427af0be0ead09d07ae2cf
+      size: 3
+    params:
+      artifacts/tata/a1_b1.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a1/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 1
+    outs:
+    - path: artifacts/tata/a1_b1/tata.txt
+      hash: md5
+      md5: ce951a98b77547c21ee5971f745631bb
+      size: 15
+  tata/a1_b2:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a1_b2 hydra.run.dir=artifacts/tata/a1_b2
+    deps:
+    - path: artifacts/toto/a1/toto.txt
+      hash: md5
+      md5: 3872c9ae3f427af0be0ead09d07ae2cf
+      size: 3
+    params:
+      artifacts/tata/a1_b2.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a1/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 2
+    outs:
+    - path: artifacts/tata/a1_b2/tata.txt
+      hash: md5
+      md5: 43b40c2756794fc4fbf3ccc007956c63
+      size: 18
+  tata/a2_b1:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a2_b1 hydra.run.dir=artifacts/tata/a2_b1
+    deps:
+    - path: artifacts/toto/a2/toto.txt
+      hash: md5
+      md5: 83a88ab12cf3296e031df84985733d33
+      size: 3
+    params:
+      artifacts/tata/a2_b1.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a2/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 1
+    outs:
+    - path: artifacts/tata/a2_b1/tata.txt
+      hash: md5
+      md5: f27551f0f9861844f4725801cff85b37
+      size: 15
+  tata/a2_b2:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a2_b2 hydra.run.dir=artifacts/tata/a2_b2
+    deps:
+    - path: artifacts/toto/a2/toto.txt
+      hash: md5
+      md5: 83a88ab12cf3296e031df84985733d33
+      size: 3
+    params:
+      artifacts/tata/a2_b2.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a2/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 2
+    outs:
+    - path: artifacts/tata/a2_b2/tata.txt
+      hash: md5
+      md5: 6b6025af220d4f1df157df6d44ebfe66
+      size: 18
+  toto/a3:
+    cmd: python xp_workflow/run.py -cd artifacts/toto -cn a3 hydra.run.dir=artifacts/toto/a3
+    params:
+      artifacts/toto/a3.yaml:
+        toto:
+          _target_: test_project.stages.toto
+          out_path: ${outs:${hydra:runtime.output_dir}/toto.txt}
+          a: 3
+    outs:
+    - path: artifacts/toto/a3/toto.txt
+      hash: md5
+      md5: 3d7b566aaed7713dfc5583dfc4b9c386
+      size: 3
+  toto/a4:
+    cmd: python xp_workflow/run.py -cd artifacts/toto -cn a4 hydra.run.dir=artifacts/toto/a4
+    params:
+      artifacts/toto/a4.yaml:
+        toto:
+          _target_: test_project.stages.toto
+          out_path: ${outs:${hydra:runtime.output_dir}/toto.txt}
+          a: 2
+    outs:
+    - path: artifacts/toto/a4/toto.txt
+      hash: md5
+      md5: 83a88ab12cf3296e031df84985733d33
+      size: 3
+  tata/a3_b1:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a3_b1 hydra.run.dir=artifacts/tata/a3_b1
+    deps:
+    - path: artifacts/toto/a3/toto.txt
+      hash: md5
+      md5: 3d7b566aaed7713dfc5583dfc4b9c386
+      size: 3
+    params:
+      artifacts/tata/a3_b1.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a3/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 4
+    outs:
+    - path: artifacts/tata/a3_b1/tata.txt
+      hash: md5
+      md5: 2835959838c88a67ee359ac5892c7120
+      size: 24
+  tata/a3_b2:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a3_b2 hydra.run.dir=artifacts/tata/a3_b2
+    deps:
+    - path: artifacts/toto/a3/toto.txt
+      hash: md5
+      md5: 3d7b566aaed7713dfc5583dfc4b9c386
+      size: 3
+    params:
+      artifacts/tata/a3_b2.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a3/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 2
+    outs:
+    - path: artifacts/tata/a3_b2/tata.txt
+      hash: md5
+      md5: 7df412879e231460689ea3dbcec22375
+      size: 18
+  tata/a4_b1:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a4_b1 hydra.run.dir=artifacts/tata/a4_b1
+    deps:
+    - path: artifacts/toto/a4/toto.txt
+      hash: md5
+      md5: 83a88ab12cf3296e031df84985733d33
+      size: 3
+    params:
+      artifacts/tata/a4_b1.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a4/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 4
+    outs:
+    - path: artifacts/tata/a4_b1/tata.txt
+      hash: md5
+      md5: 4e2137d8f1dddc4acf4ea8ab6dbf21b5
+      size: 24
+  tata/a4_b2:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a4_b2 hydra.run.dir=artifacts/tata/a4_b2
+    deps:
+    - path: artifacts/toto/a4/toto.txt
+      hash: md5
+      md5: 83a88ab12cf3296e031df84985733d33
+      size: 3
+    params:
+      artifacts/tata/a4_b2.yaml:
+        tata:
+          _target_: test_project.stages.tata
+          in_path: ${deps:artifacts/toto/a4/toto.txt}
+          out_path: ${outs:${hydra:runtime.output_dir}/tata.txt}
+          b: 2
+    outs:
+    - path: artifacts/tata/a4_b2/tata.txt
+      hash: md5
+      md5: 6b6025af220d4f1df157df6d44ebfe66
+      size: 18

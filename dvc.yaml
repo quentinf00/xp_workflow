@@ -1,15 +1,47 @@
 stages:
-  toto/a1:
-    cmd: python xp_workflow/run.py -cd configs/toto -cn a1 hydra.run.dir=data/toto/a1
+  toto/a3:
+    cmd: python xp_workflow/run.py -cd artifacts/toto -cn a3 hydra.run.dir=artifacts/toto/a3
     outs:
-    - data/toto/a1/out.txt
+    - artifacts/toto/a3/toto.txt
     deps: []
     params:
-    - configs/toto/a1.yaml: null
-  toto/a2:
-    cmd: python xp_workflow/run.py -cd configs/toto -cn a2 hydra.run.dir=data/toto/a2
+    - artifacts/toto/a3.yaml: null
+  toto/a4:
+    cmd: python xp_workflow/run.py -cd artifacts/toto -cn a4 hydra.run.dir=artifacts/toto/a4
     outs:
-    - data/toto/a2/out.txt
+    - artifacts/toto/a4/toto.txt
     deps: []
     params:
-    - configs/toto/a2.yaml: null
+    - artifacts/toto/a4.yaml: null
+  tata/a3_b1:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a3_b1 hydra.run.dir=artifacts/tata/a3_b1
+    outs:
+    - artifacts/tata/a3_b1/tata.txt
+    deps:
+    - artifacts/toto/a3/toto.txt
+    params:
+    - artifacts/tata/a3_b1.yaml: null
+  tata/a3_b2:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a3_b2 hydra.run.dir=artifacts/tata/a3_b2
+    outs:
+    - artifacts/tata/a3_b2/tata.txt
+    deps:
+    - artifacts/toto/a3/toto.txt
+    params:
+    - artifacts/tata/a3_b2.yaml: null
+  tata/a4_b1:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a4_b1 hydra.run.dir=artifacts/tata/a4_b1
+    outs:
+    - artifacts/tata/a4_b1/tata.txt
+    deps:
+    - artifacts/toto/a4/toto.txt
+    params:
+    - artifacts/tata/a4_b1.yaml: null
+  tata/a4_b2:
+    cmd: python xp_workflow/run.py -cd artifacts/tata -cn a4_b2 hydra.run.dir=artifacts/tata/a4_b2
+    outs:
+    - artifacts/tata/a4_b2/tata.txt
+    deps:
+    - artifacts/toto/a4/toto.txt
+    params:
+    - artifacts/tata/a4_b2.yaml: null

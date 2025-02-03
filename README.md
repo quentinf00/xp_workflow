@@ -51,3 +51,13 @@ logged in mlflow:
 - run dvc stages
     - log .hydra dir
 
+
+## Next steps:
+
+- test mlflow integration
+- organize configs
+- better management of path (dependency path frmo previous stage outputs)
+- apply to real use case
+- (think about packaging)
+
+
